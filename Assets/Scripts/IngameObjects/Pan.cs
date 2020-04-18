@@ -68,6 +68,14 @@ public class Pan : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, -val * verticalSpeed, rb.velocity.z) * horizontalSpeed;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == Tags.PanFence)
+        {
+            Die();
+        }
+    }
+
     public void UpdateAngle()
     {
         Vector3 angle = new Vector3(rb.velocity.z, 0, -rb.velocity.x) / horizontalSpeed;
@@ -77,7 +85,7 @@ public class Pan : MonoBehaviour
         rb.rotation = Quaternion.Slerp(rb.rotation, Quaternion.Euler(angle), Time.deltaTime * angleSpeed);
     }
 
-    public void Destroy()
+    public void Die()
     {
         Destroy(gameObject);
     }

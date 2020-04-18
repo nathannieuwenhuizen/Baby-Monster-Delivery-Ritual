@@ -8,6 +8,7 @@ TagManager:
   - Baby
   - BabyFence
   - PanFence
+  - Lava
   layers:
   - Default
   - TransparentFX

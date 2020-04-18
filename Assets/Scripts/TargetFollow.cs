@@ -28,13 +28,17 @@ public class TargetFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (updatePos) transform.position = Vector3.Lerp(transform.position, target.position, Time.deltaTime * moveSpeed);
-        if (updateRotation) {
-            Quaternion lookOnLook =
-            Quaternion.LookRotation(target.transform.position - transform.position);
+        if (target != null)
+        {
+            if (updatePos) transform.position = Vector3.Lerp(transform.position, target.position, Time.deltaTime * moveSpeed);
+            if (updateRotation)
+            {
+                Quaternion lookOnLook =
+                Quaternion.LookRotation(target.transform.position - transform.position);
 
-            transform.rotation =
-            Quaternion.Slerp(transform.rotation, lookOnLook, Time.deltaTime * rotateSpeed);
+                transform.rotation =
+                Quaternion.Slerp(transform.rotation, lookOnLook, Time.deltaTime * rotateSpeed);
+            }
         }
     }
 }

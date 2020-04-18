@@ -36,6 +36,14 @@ public class Baby : PoolObject
             Die(DeathType.fence);
         }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == Tags.Lava)
+        {
+            Die(DeathType.lava);
+        }
+    }
+
     void Update()
     {
 
@@ -52,7 +60,7 @@ public class Baby : PoolObject
             PoolManager.instance.ReuseObject(PoolManager.instance.popParticle, transform.position, transform.rotation);
         } else if (type == DeathType.lava)
         {
-            PoolManager.instance.ReuseObject(PoolManager.instance.lavaParticle, transform.position, transform.rotation);
+            PoolManager.instance.ReuseObject(PoolManager.instance.lavaParticle, transform.position, Quaternion.identity);
 
         }
         Destroy();
