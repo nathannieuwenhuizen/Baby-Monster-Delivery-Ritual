@@ -18,6 +18,20 @@ public static class Settings
         }
     }
 
+    public static float SFX
+    {
+        set
+        {
+            PlayerPrefs.SetFloat("SFX", value);
+            AudioListener.volume = value;
+
+        }
+        get
+        {
+            return PlayerPrefs.GetFloat("SFX", 1);
+        }
+    }
+
     public static bool Vibration
     {
         set
