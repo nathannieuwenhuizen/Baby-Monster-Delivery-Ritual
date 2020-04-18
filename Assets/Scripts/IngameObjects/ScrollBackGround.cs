@@ -6,6 +6,8 @@ public class ScrollBackGround : MonoBehaviour
 {
     [SerializeField]
     public float scrollSpeed;
+    [SerializeField]
+    public float extraScroll;
 
     [Range(1, 20)]
     [SerializeField]
@@ -31,6 +33,11 @@ public class ScrollBackGround : MonoBehaviour
     void Update()
     {
         transform.position += new Vector3(0, 0, -scrollSpeed * Time.deltaTime);
+        if (GameManager.instance.wokPan.pushesForward)
+        {
+            transform.position += new Vector3(0, 0, -extraScroll * Time.deltaTime);
+        }
+
         lavaRenderer.material.mainTextureOffset += lavaDirection * Time.deltaTime;
     }
 

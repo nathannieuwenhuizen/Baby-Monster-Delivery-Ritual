@@ -663,6 +663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 2
+  extraScroll: 1
   size: 8.5
   basePiece: {fileID: 704465267}
   finalPiece: {fileID: 652291981}
@@ -802,7 +803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3258,26 +3259,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1986957975, guid: 1f07f827a63106445b6d30f0765ec3f4, type: 3}
-      propertyPath: baseSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1986957975, guid: 1f07f827a63106445b6d30f0765ec3f4, type: 3}
-      propertyPath: maxPos.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1986957975, guid: 1f07f827a63106445b6d30f0765ec3f4, type: 3}
-      propertyPath: minPos.x
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1986957975, guid: 1f07f827a63106445b6d30f0765ec3f4, type: 3}
-      propertyPath: maxPos.y
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1986957975, guid: 1f07f827a63106445b6d30f0765ec3f4, type: 3}
-      propertyPath: minPos.y
-      value: -2
-      objectReference: {fileID: 0}
     - target: {fileID: 7453372150727786996, guid: 1f07f827a63106445b6d30f0765ec3f4,
         type: 3}
       propertyPath: m_Name

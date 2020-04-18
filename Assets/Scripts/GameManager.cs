@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
     {
         if (state != gameState.running) { return; }
 
-        if (aliveBabies.Count <= -10)
+        if (aliveBabies.Count <= 0)
         {
             state = gameState.end;
             scrollBg.scrollSpeed = 0;

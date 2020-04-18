@@ -15,7 +15,6 @@ public class Mother : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("start point: " + collectPoint);
         magnetBabies = new List<Baby>();
     }
 
@@ -34,7 +33,6 @@ public class Mother : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Collect point: " + collectPoint);
         foreach(Baby baby in magnetBabies)
         {
             //suck the baby back in 

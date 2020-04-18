@@ -28,6 +28,7 @@ public class Pan : MonoBehaviour
     [SerializeField]
     private Vector2 minPos;
 
+    public bool pushesForward = false;
 
     void Start()
     {
@@ -55,6 +56,13 @@ public class Pan : MonoBehaviour
 
         //bounds
         transform.position = new Vector3( Mathf.Clamp(transform.position.x, minPos.x, maxPos.x) , transform.position.y, Mathf.Clamp(transform.position.z, minPos.y, maxPos.y));
+        if (transform.position.z >= maxPos.y && inputDirection.y != 0)
+        {
+            pushesForward = true;
+        } else
+        {
+            pushesForward = false;
+        }
 
     }
 
