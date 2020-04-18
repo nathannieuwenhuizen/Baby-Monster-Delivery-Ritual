@@ -74,6 +74,10 @@ public class Pan : MonoBehaviour
         {
             Die();
         }
+        if (other.gameObject.GetComponent<BabySpawner>() != null)
+        {
+            other.gameObject.GetComponent<BabySpawner>().PopOut();
+        }
     }
 
     public void UpdateAngle()

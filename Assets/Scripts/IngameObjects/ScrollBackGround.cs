@@ -5,7 +5,7 @@ using UnityEngine;
 public class ScrollBackGround : MonoBehaviour
 {
     [SerializeField]
-    private float scrollSpeed;
+    public float scrollSpeed;
 
     [Range(1, 20)]
     [SerializeField]
@@ -41,7 +41,7 @@ public class ScrollBackGround : MonoBehaviour
             if (basePiece != null)
             {
                 basePiece.transform.localScale = new Vector3(1, 1, size);
-                basePiece.transform.position = new Vector3(basePiece.transform.position.x, basePiece.transform.position.y, size * 10f / 2f);
+                basePiece.transform.position = new Vector3(basePiece.transform.position.x, basePiece.transform.position.y, size * 10f / 2f - 5f);
                 foreach (MeshRenderer mr in basePiece.GetComponentsInChildren<MeshRenderer>())
                 {
                     mr.sharedMaterial.mainTextureScale = new Vector2(1, size);
@@ -49,7 +49,7 @@ public class ScrollBackGround : MonoBehaviour
             }
             if (finalPiece != null)
             {
-                finalPiece.transform.position = new Vector3(finalPiece.transform.position.x, finalPiece.transform.position.y, size * 10f);
+                finalPiece.transform.position = new Vector3(finalPiece.transform.position.x, finalPiece.transform.position.y, size * 10f -5f);
             }
         }
     }

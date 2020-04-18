@@ -18,7 +18,11 @@ public class Baby : PoolObject
     {
         rb = GetComponent<Rigidbody>();
     }
-
+    public Rigidbody RB
+    {
+        get { return rb; }
+        set { rb = value; }
+    }
     public void OnEnable()
     {
         if (rb == null)
@@ -35,6 +39,11 @@ public class Baby : PoolObject
         {
             Die(DeathType.fence);
         }
+        if (other.gameObject.tag == Tags.Mother)
+        {
+            other.gameObject.GetComponent<Mother>().AttractBaby(this);
+        }
+
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -46,7 +55,7 @@ public class Baby : PoolObject
 
     void Update()
     {
-
+        //just an extra check
         if (transform.position.y < disappearHeight)
         {
             Die(DeathType.lava);
@@ -55,14 +64,19 @@ public class Baby : PoolObject
 
     public void Die(DeathType type = DeathType.fence) 
     {
+        //remove from list
+        GameManager.instance.aliveBabies.Remove(this);
+
+        //check death type
         if (type == DeathType.fence)
         {
             PoolManager.instance.ReuseObject(PoolManager.instance.popParticle, transform.position, transform.rotation);
         } else if (type == DeathType.lava)
         {
             PoolManager.instance.ReuseObject(PoolManager.instance.lavaParticle, transform.position, Quaternion.identity);
-
         }
+
+        //setactive false for later use.
         Destroy();
     }
 

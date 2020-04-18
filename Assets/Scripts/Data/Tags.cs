@@ -10,4 +10,5 @@ public static class Tags
     public static string Finish = "Finish";
     public static string Baby = "Baby";
     public static string Lava = "Lava";
+    public static string Mother = "Mother";
 }
