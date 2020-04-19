@@ -20,11 +20,14 @@ public class SwingAxe : MonoBehaviour
     [SerializeField]
     private float precentageOffset;
 
+    private float index;
     void Update()
     {
-        transform.rotation = Quaternion.Euler( new Vector3(0, 0, Mathf.Sin(Time.time * swingSpeed + precentageOffset)) * swingAngle);
+        index += Time.deltaTime;
 
-        audioS.volume = Mathf.Abs(Mathf.Cos(Time.time * swingSpeed + precentageOffset)) * maxVolume;
+        transform.rotation = Quaternion.Euler( new Vector3(0, 0, Mathf.Sin(index * swingSpeed + precentageOffset)) * swingAngle);
+
+        audioS.volume = Mathf.Abs(Mathf.Cos(index * swingSpeed + precentageOffset)) * maxVolume;
     }
 
     private void Start()

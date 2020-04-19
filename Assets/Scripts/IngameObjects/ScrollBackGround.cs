@@ -54,14 +54,22 @@ public class ScrollBackGround : MonoBehaviour
     private bool editMode = true;
     private void Awake()
     {
+        UpdateSize();
         editMode = false;
     }
     void Update()
     {
+        if (GameManager.instance == null) return;
+        if (GameManager.instance.state != gameState.running) return;
+
+
         transform.position += new Vector3(0, 0, -scrollSpeed * Time.deltaTime);
         if (GameManager.instance.wokPan.pushesForward)
         {
             transform.position += new Vector3(0, 0, -extraScroll * Time.deltaTime);
+        } else if (GameManager.instance.wokPan.pushesBackward)
+        {
+            transform.position += new Vector3(0, 0, extraScroll * Time.deltaTime);
         }
 
         lavaRenderer.material.mainTextureOffset += lavaDirection * Time.deltaTime;

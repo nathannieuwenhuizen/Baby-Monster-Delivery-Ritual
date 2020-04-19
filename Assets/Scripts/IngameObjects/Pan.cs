@@ -29,6 +29,7 @@ public class Pan : MonoBehaviour
     private Vector2 minPos;
 
     public bool pushesForward = false;
+    public bool pushesBackward = false;
 
     [SerializeField]
     private AudioSource audioS;
@@ -67,9 +68,18 @@ public class Pan : MonoBehaviour
         if (transform.position.z >= maxPos.y && inputDirection.y != 0)
         {
             pushesForward = true;
-        } else
+        }
+        else
         {
             pushesForward = false;
+        }
+        if (transform.position.z <= minPos.y && inputDirection.y != 0)
+        {
+            pushesBackward = true;
+        }
+        else
+        {
+            pushesBackward = false;
         }
 
     }
