@@ -2216,6 +2216,7 @@ MonoBehaviour:
   maxPos: {x: 3, y: 4}
   minPos: {x: -3, y: -2}
   pushesForward: 0
+  pushesBackward: 0
   audioS: {fileID: 7512633367933763007}
   maxMoveSound: 0.2
 --- !u!82 &7512633367933763007
@@ -2230,7 +2231,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 112fc8203412c654ebae2c501e62b160, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
