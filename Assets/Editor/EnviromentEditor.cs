@@ -10,13 +10,13 @@ public class EnviromentEditor : Editor
 
         DrawDefaultInspector();
         ScrollBackGround myScript = (ScrollBackGround)target;
-        /*if (GUILayout.Button("UpdateSize"))
+        if (GUILayout.Button("Place Rock (will delete the previous rocks!)"))
         {
             if (myScript != null)
             {
-                myScript.GenerateColorPallet();
+                myScript.PlaceRocks();
             }
-        }*/
+        }
         myScript.UpdateSize();
 
     }
