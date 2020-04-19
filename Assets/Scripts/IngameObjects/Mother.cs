@@ -22,12 +22,16 @@ public class Mother : MonoBehaviour
     {
         if (magnetBabies.Contains(baby)) { return; }
         magnetBabies.Add(baby);
+        baby.Attract();
     }
     public void CollectBaby(Baby baby)
     {
-        magnetBabies.Remove(baby);
-        baby.Die();
+        baby.InWieg();
+        baby.transform.position = collectPoint.position;
         GameManager.instance.amountOfBabiesCollected++;
+        GameManager.instance.AliveBabies.Remove(baby);
+        GameManager.instance.UpdateBabyCount();
+
     }
 
     // Update is called once per frame
@@ -35,12 +39,16 @@ public class Mother : MonoBehaviour
     {
         foreach(Baby baby in magnetBabies)
         {
-            //suck the baby back in 
-            baby.RB.AddForce((collectPoint.position - baby.transform.position).normalized * magnetForce);
-            if (Vector3.Distance(collectPoint.position, baby.transform.position) < 1f)
+            if (!baby.inWieg)
             {
-                CollectBaby(baby);
-                break;
+                //suck the baby back in 
+                baby.RB.AddForce((collectPoint.position - baby.transform.position).normalized * magnetForce);
+                if (Vector3.Distance(collectPoint.position, baby.transform.position) < 2f)
+                {
+                    CollectBaby(baby);
+                    magnetBabies.Remove(baby);
+                    break;
+                }
             }
         }
     }

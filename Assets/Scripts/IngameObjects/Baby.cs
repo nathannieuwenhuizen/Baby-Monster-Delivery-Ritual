@@ -13,10 +13,15 @@ public class Baby : PoolObject
     public static float disappearHeight = -10;
 
     private Rigidbody rb;
+    private SphereCollider coll;
 
+    public bool inWieg = false;
+
+    public float danceForce = 200f;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        coll = GetComponent<SphereCollider>();
     }
     public Rigidbody RB
     {
@@ -28,6 +33,10 @@ public class Baby : PoolObject
         if (rb == null)
         {
             rb = GetComponent<Rigidbody>();
+        }
+        if (coll == null)
+        {
+            coll = GetComponent<SphereCollider>();
         }
         rb.velocity = Vector3.zero;
 
@@ -62,8 +71,34 @@ public class Baby : PoolObject
         }
     }
 
+    public void Attract() {
+        coll.enabled = false;
+    }
+
+    public void InWieg()
+    {
+        inWieg = true;
+        gameObject.AddComponent<SphereCollider>();
+        GetComponent<SphereCollider>().enabled = true;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        coll.enabled = true;
+        StartCoroutine(Dancing());
+    }
+
+    public IEnumerator Dancing()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(1, 3));
+            rb.AddForce(new Vector3(Random.Range(-danceForce, danceForce), Random.Range(-danceForce, danceForce), Random.Range(-danceForce, danceForce)));
+        }
+    }
+
     public void Die(DeathType type = DeathType.fence) 
     {
+        if (inWieg) { return; }
+
         //remove from list
         GameManager.instance.AliveBabies.Remove(this);
         GameManager.instance.UpdateBabyCount();

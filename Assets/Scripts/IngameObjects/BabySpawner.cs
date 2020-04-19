@@ -17,6 +17,9 @@ public class BabySpawner : MonoBehaviour
     [SerializeField]
     private float offset;
 
+    [SerializeField]
+    private TextMesh countText;
+
     public void PopOut()
     {
         for (int i = 0; i < amountOfBabies; i++)
@@ -26,8 +29,13 @@ public class BabySpawner : MonoBehaviour
             GameManager.instance.UpdateBabyCount();
 
         }
-        Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
 
+    }
+
+    public void Start()
+    {
+        countText.text = "" + amountOfBabies;
     }
 
 }
