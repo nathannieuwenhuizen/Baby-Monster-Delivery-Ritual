@@ -18,10 +18,25 @@ public class Baby : PoolObject
     public bool inWieg = false;
 
     public float danceForce = 200f;
+
+    [SerializeField]
+    private AudioClip fallSound;
+    [SerializeField]
+    private AudioClip[] laughSounds;
+    [SerializeField]
+    private AudioClip[] idleSounds;
+    [SerializeField]
+    private AudioClip magnetiseSound;
+    [SerializeField]
+    private AudioSource audioS;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         coll = GetComponent<SphereCollider>();
+
+        StopAllCoroutines();
+        StartCoroutine(PlayIdleSoundLoop());
     }
     public Rigidbody RB
     {
@@ -39,6 +54,9 @@ public class Baby : PoolObject
             coll = GetComponent<SphereCollider>();
         }
         rb.velocity = Vector3.zero;
+
+        StopAllCoroutines();
+        StartCoroutine(PlayIdleSoundLoop());
 
     }
 
@@ -64,14 +82,58 @@ public class Baby : PoolObject
 
     void Update()
     {
+        if (inWieg) { return; }
+
         //just an extra check
         if (transform.position.y < disappearHeight)
         {
             Die(DeathType.lava);
         }
+        if (transform.position.y < GameManager.instance.wokPan.transform.position.y -.2f)
+        {
+            PlayBabySound(fallSound, .3f);
+        }
+    }
+
+
+    IEnumerator PlayIdleSoundLoop()
+    {
+        while (!inWieg)
+        {
+            if (GameManager.instance.AliveBabies != null)
+            {
+                yield return new WaitForSeconds(Random.Range(1, 5));
+            } else
+            {
+                yield return new WaitForSeconds(1);
+
+            }
+            PlayBabySound(idleSounds, .1f + .3f * (1 /  (0.1f +GameManager.instance.AliveBabies.Count)));
+        }
+    }
+
+    public void PlayBabySound(AudioClip clip, float volume, bool forcePlay = false)
+    {
+        if (!audioS.isPlaying || forcePlay)
+        {
+            audioS.clip = clip;
+            audioS.volume = volume;
+            audioS.Play();
+        }
+    }
+
+    public void PlayBabySound(AudioClip[] clips, float volume, bool forcePlay = false)
+    {
+        if (!audioS.isPlaying || forcePlay)
+        {
+            audioS.clip = clips[Mathf.FloorToInt(Random.Range(0, clips.Length))];
+            audioS.volume = volume;
+            audioS.Play();
+        }
     }
 
     public void Attract() {
+        PlayBabySound(magnetiseSound, .1f);
         coll.enabled = false;
     }
 
@@ -91,6 +153,7 @@ public class Baby : PoolObject
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(1, 3));
+            PlayBabySound(laughSounds,.1f +  .4f * (1 / GameManager.instance.amountOfBabiesCollected));
             rb.AddForce(new Vector3(Random.Range(-danceForce, danceForce), Random.Range(-danceForce, danceForce), Random.Range(-danceForce, danceForce)));
         }
     }
@@ -110,6 +173,7 @@ public class Baby : PoolObject
             PoolManager.instance.ReuseObject(PoolManager.instance.popParticle, transform.position, transform.rotation);
         } else if (type == DeathType.lava)
         {
+            AudioManager.instance?.PlaySound(AudioEffect.balloonPop, .2f);
             PoolManager.instance.ReuseObject(PoolManager.instance.lavaParticle, transform.position, Quaternion.identity);
         }
 

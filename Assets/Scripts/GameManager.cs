@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     //backend
     private SceneLoader sceneLoader;
-    private gameState state;
+    public gameState state;
 
 
     public static GameManager instance;
@@ -126,6 +126,7 @@ public class GameManager : MonoBehaviour
 
     public void Pause(bool val)
     {
+        AudioManager.instance?.PlaySound(AudioEffect.uiClick);
         Time.timeScale = val ? 0 : 1f;
         pauseButton.SetActive(!val);
         babyCountParent.SetActive(!val);
@@ -134,12 +135,15 @@ public class GameManager : MonoBehaviour
 
     IEnumerator Fail()
     {
+        AudioManager.instance?.PlaySound(AudioEffect.fail);
+
         yield return StartCoroutine(fadeImage.FadeTo(0, 1, 0.5f));
         sceneLoader.ReloadScene();
     }
 
     public void EndScreen()
     {
+        AudioManager.instance?.PlaySound(AudioEffect.resultScreen);
         pauseButton.SetActive(false);
         babyCountParent.gameObject.SetActive(false);
         resultScreen.gameObject.SetActive(true);

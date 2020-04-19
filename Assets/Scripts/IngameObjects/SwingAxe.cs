@@ -14,13 +14,28 @@ public class SwingAxe : MonoBehaviour
 
 
     Inventory inventory;
-    // Update is called once per frame
+
+    private AudioSource audioS;
+    [SerializeField]
+    private float maxVolume;
+
+    [Range(0,3.14f)]
+    [SerializeField]
+    private float precentageOffset;
+
     void Update()
     {
-        transform.rotation = Quaternion.Euler( new Vector3(0, 0, Mathf.Sin(Time.time * swingSpeed)) * swingAngle);
+        transform.rotation = Quaternion.Euler( new Vector3(0, 0, Mathf.Sin(Time.time * swingSpeed + precentageOffset)) * swingAngle);
+
+        audioS.volume = Mathf.Abs(Mathf.Cos(Time.time * swingSpeed + precentageOffset)) * maxVolume;
         inventory.Water.Cap();
     }
-    
+
+    private void Start()
+    {
+        audioS = GetComponent<AudioSource>();
+    }
+
 }
 
 [System.Serializable]

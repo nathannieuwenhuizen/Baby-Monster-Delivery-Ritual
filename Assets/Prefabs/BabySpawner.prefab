@@ -198,7 +198,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1734518249308925786}
-  - component: {fileID: 284898614726164286}
   m_Layer: 0
   m_Name: BabySpawner
   m_TagString: Untagged
@@ -225,24 +224,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &284898614726164286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 940899124846288630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 803d6e64534c9674ab1252aab0544abb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  amountOfBabies: 20
-  babyPrefab: {fileID: 8749269643265739488, guid: 2417af921ac48404ea53ca3e488fd655,
-    type: 3}
-  spawnPos: {fileID: 4176081273660269320}
-  offset: 0.3
-  countText: {fileID: 8902336376033978935}
 --- !u!1 &959104707500822491
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,7 +505,7 @@ MonoBehaviour:
     type: 3}
   spawnPos: {fileID: 4176081273660269320}
   offset: 1
-  countText: {fileID: 0}
+  countText: {fileID: 8902336376033978935}
 --- !u!1 &7617487452505679171
 GameObject:
   m_ObjectHideFlags: 0

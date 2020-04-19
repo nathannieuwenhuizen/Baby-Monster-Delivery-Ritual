@@ -22,6 +22,8 @@ public class BabySpawner : MonoBehaviour
 
     public void PopOut()
     {
+        AudioManager.instance?.PlaySound(AudioEffect.balloonPop);
+
         for (int i = 0; i < amountOfBabies; i++)
         {
             Baby newBaby = PoolManager.instance.ReuseObject(babyPrefab, spawnPos.position + new Vector3(Random.Range(-offset, offset), Random.Range(-offset, offset), Random.Range(-offset, offset)), Quaternion.identity).GetComponent<Baby>();
@@ -35,7 +37,10 @@ public class BabySpawner : MonoBehaviour
 
     public void Start()
     {
-        countText.text = "" + amountOfBabies;
+        if (countText != null)
+        {
+            countText.text = "" + amountOfBabies;
+        }
     }
 
 }

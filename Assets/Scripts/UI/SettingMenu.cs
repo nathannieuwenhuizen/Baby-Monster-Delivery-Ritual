@@ -12,6 +12,9 @@ public class SettingMenu : MonoBehaviour
     [SerializeField]
     private Slider sfxSlider;
 
+    [SerializeField]
+    private AudioSource uiClick;
+
     void Start()
     {
         volumeSlider.value = Settings.Volume;
@@ -22,6 +25,8 @@ public class SettingMenu : MonoBehaviour
         });
 
         sfxSlider.onValueChanged.AddListener(delegate {
+            uiClick.volume = sfxSlider.value;
+            uiClick.Play();
             Settings.SFX = sfxSlider.value;
         });
     }

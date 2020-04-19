@@ -32,6 +32,13 @@ public class Pusher : MonoBehaviour
     private AnimationCurve pullCurve;
 
 
+    //sounds
+    private AudioSource audioS;
+    [SerializeField]
+    private AudioClip rumbleClip;
+    [SerializeField]
+    private AudioClip pushClip;
+
     private float outTime = 1f;
     [SerializeField]
     private float rumbleDistance = 0.5f;
@@ -42,22 +49,37 @@ public class Pusher : MonoBehaviour
     {
         startDistance = transform.localPosition.x;
         StartCoroutine(Loop());
+
+        audioS = GetComponent<AudioSource>();
     }
 
     IEnumerator Loop()
     {
-        while(active)
+        while(true)
         {
             yield return new WaitForSeconds(waitTime);
             yield return StartCoroutine(Rumble());
             yield return StartCoroutine(Push());
             yield return new WaitForSeconds(betweenPushAndPullTime);
             yield return StartCoroutine(Pull());
+            yield return new WaitUntil(delegate { return GameManager.instance.state == gameState.running; });
         }
 
     }
+
+    public void PlaySound(AudioClip clip, float volume, bool forcePlay = false)
+    {
+        if (!audioS.isPlaying || forcePlay)
+        {
+            audioS.clip = clip;
+            audioS.volume = volume;
+            audioS.Play();
+        }
+    }
+
     IEnumerator Rumble()
     {
+        PlaySound(rumbleClip, .5f, true);
         float currentTime = 0;
         while(currentTime < rumbleTime)
         {
@@ -74,6 +96,8 @@ public class Pusher : MonoBehaviour
 
     IEnumerator Push()
     {
+        PlaySound(pushClip, .5f, true);
+
         float index = 0;
         float current = 0;
         while (index < 1)

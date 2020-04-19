@@ -30,6 +30,11 @@ public class Pan : MonoBehaviour
 
     public bool pushesForward = false;
 
+    [SerializeField]
+    private AudioSource audioS;
+    [SerializeField]
+    private float maxMoveSound;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -53,6 +58,9 @@ public class Pan : MonoBehaviour
 
         //rotation update
         UpdateAngle();
+
+        //update sound
+        audioS.volume = (Mathf.Abs(rb.velocity.x) + Mathf.Abs(rb.velocity.z)) / (horizontalSpeed * 4) * maxMoveSound;
 
         //bounds
         transform.position = new Vector3( Mathf.Clamp(transform.position.x, minPos.x, maxPos.x) , transform.position.y, Mathf.Clamp(transform.position.z, minPos.y, maxPos.y));
