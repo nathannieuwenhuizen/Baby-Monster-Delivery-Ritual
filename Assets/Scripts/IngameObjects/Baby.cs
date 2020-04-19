@@ -89,9 +89,16 @@ public class Baby : PoolObject
         {
             Die(DeathType.lava);
         }
-        if (transform.position.y < GameManager.instance.wokPan.transform.position.y -.2f)
-        {
-            PlayBabySound(fallSound, .3f);
+        if (GameManager.instance.wokPan != null) {
+            if (transform.position.y < GameManager.instance.wokPan.transform.position.y - .2f)
+            {
+                PlayBabySound(fallSound, .3f);
+            }
+            if (Vector3.Distance(transform.position, GameManager.instance.wokPan.transform.position) > 20f)
+            {
+                Die();
+            }
+
         }
     }
 
@@ -170,10 +177,11 @@ public class Baby : PoolObject
         //check death type
         if (type == DeathType.fence)
         {
+            AudioManager.instance?.PlaySound(AudioEffect.balloonPop, .2f);
             PoolManager.instance.ReuseObject(PoolManager.instance.popParticle, transform.position, transform.rotation);
         } else if (type == DeathType.lava)
         {
-            AudioManager.instance?.PlaySound(AudioEffect.balloonPop, .2f);
+            AudioManager.instance?.PlaySound(AudioEffect.lavaSplash, .2f);
             PoolManager.instance.ReuseObject(PoolManager.instance.lavaParticle, transform.position, Quaternion.identity);
         }
 

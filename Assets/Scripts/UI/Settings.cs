@@ -98,7 +98,7 @@ public static class Settings
             PlayerPrefs.SetInt("Vibration", value == true ? 1 : 0);
             if (value)
             {
-                Handheld.Vibrate();
+                //Handheld.Vibrate();
             }
 
         }

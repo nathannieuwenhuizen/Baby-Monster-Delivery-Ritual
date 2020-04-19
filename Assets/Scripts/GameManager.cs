@@ -14,6 +14,7 @@ public enum gameState
 }
 public class GameManager : MonoBehaviour
 {
+    public int level = 1;
 
     //score
     [Header("score info")]
@@ -91,7 +92,7 @@ public class GameManager : MonoBehaviour
             state = gameState.end;
             scrollBg.scrollSpeed = 0;
             duration = Time.time - startTime;
-            timeScore = Mathf.RoundToInt(100 / (1 + (duration / 10)));
+            timeScore = Mathf.RoundToInt(500 / (1 + (duration / 10)));
 
             if (amountOfBabiesCollected == 0 )
             {
@@ -143,10 +144,63 @@ public class GameManager : MonoBehaviour
 
     public void EndScreen()
     {
-        AudioManager.instance?.PlaySound(AudioEffect.resultScreen);
+        bool levelUnlocked = false;
+        if (level >= Settings.LevelProgression && level != 4)
+        {
+            levelUnlocked = true;
+            Settings.LevelProgression = level + 1;
+            //new level unlocked
+        }
+
+        bool newHighscore = false;
+        //check new highscore
+        if (NewHighscore())
+        {
+            newHighscore = true;
+            //new highscore
+        }
+
         pauseButton.SetActive(false);
         babyCountParent.gameObject.SetActive(false);
         resultScreen.gameObject.SetActive(true);
-        StartCoroutine(resultScreen.ShowingResults(amountOfBabiesCollected, timeScore));
+        StartCoroutine(resultScreen.ShowingResults(amountOfBabiesCollected, timeScore, newHighscore, levelUnlocked));
+    }
+
+    public bool NewHighscore()
+    {
+        int score = amountOfBabiesCollected * 10 + timeScore;
+
+        switch (level)
+        {
+            case 1:
+                if (score > Settings.HighscoreLvl1)
+                {
+                    Settings.HighscoreLvl1 = score;
+                    return true;
+                }
+                break;
+            case 2:
+                if (score > Settings.HighscoreLvl2)
+                {
+                    Settings.HighscoreLvl2 = score;
+                    return true;
+                }
+                break;
+            case 3:
+                if (score > Settings.HighscoreLvl3)
+                {
+                    Settings.HighscoreLvl3 = score;
+                    return true;
+                }
+                break;
+            case 4:
+                if (score > Settings.HighscoreLvl4)
+                {
+                    Settings.HighscoreLvl4 = score;
+                    return true;
+                }
+                break;
+        }
+        return false;
     }
 }

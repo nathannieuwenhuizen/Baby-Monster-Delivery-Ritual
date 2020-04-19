@@ -17720,6 +17720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a411a9e56f0a444bb7497a64fe4e210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 2
   amountOfBabiesCollected: 0
   timeScore: 0
   totalScore: 0

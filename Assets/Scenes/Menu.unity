@@ -1841,6 +1841,17 @@ MonoBehaviour:
           m_StringArgument: Level1
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 399290756}
+        m_MethodName: set_text
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Loading...
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &402739568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2065,7 +2076,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &471266368
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2102,12 +2113,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 471266367}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2cca5c3efb4de94bab039ae9cf65909, type: 3}
+  m_Script: {fileID: 11500000, guid: 7521f96d930406a4cb6975c3bd4efa85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeSlider: {fileID: 0}
-  sfxSlider: {fileID: 0}
-  uiClick: {fileID: 2144721236}
+  levelButtons:
+  - level: 1
+    levelButton: {fileID: 402739567}
+    trophy: {fileID: 747936851}
+    highScoreText: {fileID: 1392403816}
+  - level: 2
+    levelButton: {fileID: 690483302}
+    trophy: {fileID: 226645953}
+    highScoreText: {fileID: 847281180}
+  - level: 3
+    levelButton: {fileID: 1541108616}
+    trophy: {fileID: 429128023}
+    highScoreText: {fileID: 1746272737}
+  - level: 4
+    levelButton: {fileID: 1231968334}
+    trophy: {fileID: 1586379375}
+    highScoreText: {fileID: 1871220852}
 --- !u!1 &478874733
 GameObject:
   m_ObjectHideFlags: 0
@@ -2865,6 +2890,17 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Level2
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 399290756}
+        m_MethodName: set_text
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Loading...
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &690483303
@@ -9395,6 +9431,17 @@ MonoBehaviour:
           m_StringArgument: Level4
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 399290756}
+        m_MethodName: set_text
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Loading...
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1231968335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10940,6 +10987,17 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Level3
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 399290756}
+        m_MethodName: set_text
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Loading...
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1541108617
@@ -16335,9 +16393,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 352524724}
-        m_MethodName: LoadNewScene
-        m_Mode: 5
+      - m_Target: {fileID: 885925952}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -16345,6 +16403,17 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: Level1
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 471266367}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1672976471
 MonoBehaviour:

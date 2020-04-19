@@ -21,11 +21,23 @@ public class ResultScreen : MonoBehaviour
 
     private int babyMultiplier = 10;
 
-    public IEnumerator ShowingResults(int babies, int timeScore)
+    [SerializeField]
+    private GameObject newHighscoreText;
+    [SerializeField]
+    private GameObject levelUnlockedText;
+
+    public IEnumerator ShowingResults(int babies, int timeScore, bool newHighscore, bool levelUnlocked)
     {
+        levelUnlockedText.SetActive(levelUnlocked);
+
         yield return AnimateText(babyText, babies, " x" + babyMultiplier);
+        AudioManager.instance?.PlaySound(AudioEffect.resultScreen);
         yield return AnimateText(timeText, timeScore);
+        AudioManager.instance?.PlaySound(AudioEffect.resultScreen);
         yield return AnimateText(totalText, timeScore + babies * babyMultiplier);
+        AudioManager.instance?.PlaySound(AudioEffect.resultScreen);
+        newHighscoreText.SetActive(newHighscore);
+
     }
 
     public IEnumerator AnimateText(Text text, float val, string aditionalText = "")
