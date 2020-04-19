@@ -14,6 +14,16 @@ public class ScrollBackGround : MonoBehaviour
     [SerializeField]
     private float maxScale = 10f;
 
+    [Header("torchValues")]
+    [SerializeField]
+    private GameObject torchPrefab;
+    [SerializeField]
+    private GameObject torchParent;
+    [Range(0, 50)]
+    [SerializeField]
+    private int amountOfTorches = 5;
+
+
     [SerializeField]
     public float scrollSpeed;
     [SerializeField]
@@ -77,23 +87,73 @@ public class ScrollBackGround : MonoBehaviour
         }
     }
 
+    public void RemoveAllAsthetics()
+    {
+        RemoveAllChildrenFromParent(torchParent);
+        RemoveAllChildrenFromParent(rockParent);
+    }
+
+    public void RemoveAllChildrenFromParent(GameObject parent)
+    {
+        int childs = parent.transform.childCount;
+        for (int i = childs - 1; i > 0; i--)
+        {
+            GameObject.DestroyImmediate(parent.transform.GetChild(i).gameObject);
+        }
+
+        if (parent.transform.childCount > 0)
+        {
+            GameObject.DestroyImmediate(parent.transform.GetChild(0).gameObject);
+        }
+
+
+    }
+
+    public void PlaceTorches()
+    {
+        if (torchParent == null || torchPrefab == null) { return; }
+
+        RemoveAllChildrenFromParent(torchParent);
+
+        for (int i = 0; i < amountOfTorches; i++)
+        {
+            GameObject newTorch = Instantiate(torchPrefab, torchParent.transform);
+            newTorch.name = "torch #" + i;
+            
+            Vector3 position = new Vector3(0, 0, ((float)i / (float)amountOfTorches) * size * (9 + Random.value * 2));
+            position.y = 1 + Random.value * 2f;
+            Vector3 rotation = new Vector3(0, -90, 0);
+
+            float r = Random.value;
+            if (r < 0.5f)
+            {
+                position.x = -3.1f;
+            }
+            else
+            {
+                position.x = 3.1f;
+                rotation.y = 90;
+
+            }
+
+            newTorch.transform.position = position;
+            newTorch.transform.rotation = Quaternion.Euler(rotation);
+        }
+
+    }
+
     public void PlaceRocks()
     {
         if (rockParent == null || rock == null) { return; }
-        foreach(Transform rocks in rockParent.transform.GetComponentInChildren<Transform>())
-        {
-            if (rocks != rockParent)
-            {
-                Destroy(rocks.gameObject);
-            }
-        }
 
+        RemoveAllChildrenFromParent(rockParent);
         for (int i = 0; i < amountOfRocks; i++)
         {
             GameObject newRock = Instantiate(rock, rockParent.transform);
+            newRock.name = "rock #" + i;
             Vector3 rotation = new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
             newRock.transform.rotation = Quaternion.Euler(rotation);
-            Vector3 position = new Vector3(0, 0, i / amountOfRocks * size);
+            Vector3 position = new Vector3(0, 0, ((float)i / (float)amountOfRocks) * size * 10f);
             position.y = -2;
             float r = Random.value;
             if (r < 0.33f)

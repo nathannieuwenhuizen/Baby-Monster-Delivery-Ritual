@@ -12,9 +12,6 @@ public class SwingAxe : MonoBehaviour
     [SerializeField]
     private float swingSpeed = 0.2f;
 
-
-    Inventory inventory;
-
     private AudioSource audioS;
     [SerializeField]
     private float maxVolume;
@@ -28,7 +25,6 @@ public class SwingAxe : MonoBehaviour
         transform.rotation = Quaternion.Euler( new Vector3(0, 0, Mathf.Sin(Time.time * swingSpeed + precentageOffset)) * swingAngle);
 
         audioS.volume = Mathf.Abs(Mathf.Cos(Time.time * swingSpeed + precentageOffset)) * maxVolume;
-        inventory.Water.Cap();
     }
 
     private void Start()

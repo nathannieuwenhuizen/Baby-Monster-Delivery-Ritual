@@ -17,6 +17,20 @@ public class EnviromentEditor : Editor
                 myScript.PlaceRocks();
             }
         }
+        if (GUILayout.Button("Place Torches (will delete the previous torches!)"))
+        {
+            if (myScript != null)
+            {
+                myScript.PlaceTorches();
+            }
+        }
+        if (GUILayout.Button("Remove All Asthetics (torches and rocks)"))
+        {
+            if (myScript != null)
+            {
+                myScript.RemoveAllAsthetics();
+            }
+        }
         myScript.UpdateSize();
 
     }
