@@ -22,7 +22,9 @@ public class BabySpawner : MonoBehaviour
         for (int i = 0; i < amountOfBabies; i++)
         {
             Baby newBaby = PoolManager.instance.ReuseObject(babyPrefab, spawnPos.position + new Vector3(Random.Range(-offset, offset), Random.Range(-offset, offset), Random.Range(-offset, offset)), Quaternion.identity).GetComponent<Baby>();
-            GameManager.instance.aliveBabies.Add(newBaby);
+            GameManager.instance.AliveBabies.Add(newBaby);
+            GameManager.instance.UpdateBabyCount();
+
         }
         Destroy(gameObject);
 

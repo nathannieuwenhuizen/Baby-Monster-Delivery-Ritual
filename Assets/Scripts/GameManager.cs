@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 
@@ -30,7 +31,7 @@ public class GameManager : MonoBehaviour
     //ingame objects
     [Header("ingame objects")]
     public Pan wokPan;
-    public List<Baby> aliveBabies;
+    private List<Baby> aliveBabies;
     public ScrollBackGround scrollBg;
 
     //ui
@@ -43,6 +44,10 @@ public class GameManager : MonoBehaviour
     private GameObject pauseButton;
     [SerializeField]
     private GameObject pauseScreen;
+    [SerializeField]
+    private Text babyCount;
+    [SerializeField]
+    private GameObject babyCountParent;
 
     //backend
     private SceneLoader sceneLoader;
@@ -55,11 +60,8 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-
-    // Start is called before the first frame update
     void Start()
     {
-
         startTime = Time.time;
 
         sceneLoader = GetComponent<SceneLoader>();
@@ -75,7 +77,8 @@ public class GameManager : MonoBehaviour
     public void SpawnFirstBaby()
     {
         Baby newBaby = PoolManager.instance.ReuseObject(babyPrefab,wokPan.transform.position + new Vector3(0,.5f,0), Quaternion.identity).GetComponent<Baby>();
-        aliveBabies.Add(newBaby);
+        AliveBabies.Add(newBaby);
+        UpdateBabyCount();
     }
 
     // Update is called once per frame
@@ -101,6 +104,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public List<Baby> AliveBabies
+    {
+        get {
+            return aliveBabies;
+        }
+        set {
+            aliveBabies = value;
+        }
+    }
+
+    public void UpdateBabyCount()
+    {
+        babyCount.text = "" + aliveBabies.Count;
+    }
+
     public void OnApplicationPause(bool pause)
     {
         //Pause(true);
@@ -110,6 +128,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = val ? 0 : 1f;
         pauseButton.SetActive(!val);
+        babyCountParent.SetActive(!val);
         pauseScreen.SetActive(val);
     }
 
@@ -121,6 +140,8 @@ public class GameManager : MonoBehaviour
 
     public void EndScreen()
     {
+        pauseButton.SetActive(false);
+        babyCountParent.gameObject.SetActive(false);
         resultScreen.gameObject.SetActive(true);
         StartCoroutine(resultScreen.ShowingResults(amountOfBabiesCollected, timeScore));
     }

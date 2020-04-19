@@ -65,7 +65,9 @@ public class Baby : PoolObject
     public void Die(DeathType type = DeathType.fence) 
     {
         //remove from list
-        GameManager.instance.aliveBabies.Remove(this);
+        GameManager.instance.AliveBabies.Remove(this);
+        GameManager.instance.UpdateBabyCount();
+
 
         //check death type
         if (type == DeathType.fence)
