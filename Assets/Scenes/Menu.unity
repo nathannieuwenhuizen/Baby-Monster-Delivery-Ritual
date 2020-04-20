@@ -1381,9 +1381,21 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Move pan: Arrows/ASWD
+  m_Text: 'Keyboard:
 
-    Change vertically: O,L'
+    Move pan: Arrows/ASWD
+
+    Change vertically: O,L
+
+
+    Controller:
+
+    Move
+    pan: Joystick
+
+    Change vertically: X,Y,A,B
+
+'
 --- !u!222 &323325696
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1930,7 +1942,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.3
   m_Pitch: 0.5
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
