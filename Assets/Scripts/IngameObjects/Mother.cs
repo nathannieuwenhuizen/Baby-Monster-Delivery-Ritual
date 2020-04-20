@@ -26,6 +26,10 @@ public class Mother : MonoBehaviour
     }
     public void CollectBaby(Baby baby)
     {
+        if (!GetComponent<ParticleSystem>().isPlaying)
+        {
+            GetComponent<ParticleSystem>().Play();
+        }
         baby.InWieg();
         baby.transform.position = collectPoint.position;
         GameManager.instance.amountOfBabiesCollected++;

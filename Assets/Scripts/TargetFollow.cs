@@ -19,13 +19,7 @@ public class TargetFollow : MonoBehaviour
     [SerializeField]
     private float rotateSpeed = 2f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         if (target != null)
@@ -34,7 +28,7 @@ public class TargetFollow : MonoBehaviour
             if (updateRotation)
             {
                 Quaternion lookOnLook =
-                Quaternion.LookRotation(target.transform.position - transform.position);
+                Quaternion.LookRotation((target.transform.position  + new Vector3(0,0,5f)) - transform.position);
 
                 transform.rotation =
                 Quaternion.Slerp(transform.rotation, lookOnLook, Time.deltaTime * rotateSpeed);

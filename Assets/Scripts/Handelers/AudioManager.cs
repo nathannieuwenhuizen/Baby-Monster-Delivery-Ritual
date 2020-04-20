@@ -51,7 +51,7 @@ public class AudioManager : MonoBehaviour
         selectedAudio.audioS.spatialBlend = 0;
         if (volume != -1)
         {
-            selectedAudio.audioS.volume = volume;
+            selectedAudio.audioS.volume = volume * Settings.SFX;
         }
         selectedAudio.audioS.Play();
     }
@@ -70,7 +70,7 @@ public class AudioManager : MonoBehaviour
         selectedAudio.audioS.pitch = pitch;
         selectedAudio.audioS.spatialBlend = 1;
         selectedAudio.audioS.gameObject.transform.position = position;
-        selectedAudio.audioS.volume = volume;
+        selectedAudio.audioS.volume = volume * Settings.SFX;
         selectedAudio.audioS.Play();
     }
     public void StopSound(AudioEffect audioEffect)

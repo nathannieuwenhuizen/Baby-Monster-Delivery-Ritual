@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
         if (aliveBabies.Count <= 0)
         {
             state = gameState.end;
-            scrollBg.scrollSpeed = 0;
+            //scrollBg.scrollSpeed = 0;
             duration = Time.time - startTime;
             timeScore = Mathf.RoundToInt(500 / (1 + (duration / 10)));
 

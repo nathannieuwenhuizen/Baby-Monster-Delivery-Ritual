@@ -160,6 +160,7 @@ public class Baby : PoolObject
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(1, 3));
+            GetComponent<ParticleSystem>().Play();
             PlayBabySound(laughSounds,.1f +  .4f * (1 / GameManager.instance.amountOfBabiesCollected));
             rb.AddForce(new Vector3(Random.Range(-danceForce, danceForce), Random.Range(-danceForce, danceForce), Random.Range(-danceForce, danceForce)));
         }

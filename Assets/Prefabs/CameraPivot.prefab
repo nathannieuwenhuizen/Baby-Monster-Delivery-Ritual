@@ -102,7 +102,7 @@ MonoBehaviour:
   updatePos: 0
   updateRotation: 1
   moveSpeed: 2
-  rotateSpeed: 0.1
+  rotateSpeed: 0.2
 --- !u!114 &8964011289475539103
 MonoBehaviour:
   m_ObjectHideFlags: 0

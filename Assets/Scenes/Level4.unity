@@ -12262,6 +12262,7 @@ MonoBehaviour:
   rockParent: {fileID: 915815439}
   lavaRenderer: {fileID: 1462612824}
   lavaDirection: {x: 0.05, y: 0}
+  endOfLevelReached: 0
 --- !u!4 &292762233
 Transform:
   m_ObjectHideFlags: 0
@@ -72221,7 +72222,7 @@ PrefabInstance:
     - target: {fileID: 2953740156715598323, guid: b8937ae70a930c744a022b370d16c4f4,
         type: 3}
       propertyPath: magnetForce
-      value: 300
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5850331067545069516, guid: b8937ae70a930c744a022b370d16c4f4,
         type: 3}

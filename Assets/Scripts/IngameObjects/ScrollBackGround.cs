@@ -51,6 +51,8 @@ public class ScrollBackGround : MonoBehaviour
     [SerializeField]
     private Vector2 lavaDirection;
 
+    public bool endOfLevelReached = false;
+
     private bool editMode = true;
     private void Awake()
     {
@@ -59,8 +61,7 @@ public class ScrollBackGround : MonoBehaviour
     }
     void Update()
     {
-        if (GameManager.instance == null) return;
-        if (GameManager.instance.state != gameState.running) return;
+        if (endOfLevelReached) return;
 
 
         transform.position += new Vector3(0, 0, -scrollSpeed * Time.deltaTime);
@@ -70,6 +71,11 @@ public class ScrollBackGround : MonoBehaviour
         } else if (GameManager.instance.wokPan.pushesBackward)
         {
             transform.position += new Vector3(0, 0, extraScroll * Time.deltaTime);
+        }
+
+        if (finalPiece.transform.position.z < -10f)
+        {
+            endOfLevelReached = true;
         }
 
         lavaRenderer.material.mainTextureOffset += lavaDirection * Time.deltaTime;

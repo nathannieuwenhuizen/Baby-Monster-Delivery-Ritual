@@ -63810,39 +63810,9 @@ PrefabInstance:
       objectReference: {fileID: 793011456}
     - target: {fileID: 263740523823740182, guid: bec982c4520c0614ca646c0366c3fcce,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 263740523823740182, guid: bec982c4520c0614ca646c0366c3fcce,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 263740523823740182, guid: bec982c4520c0614ca646c0366c3fcce,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 263740523823740182, guid: bec982c4520c0614ca646c0366c3fcce,
-        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 793011456}
-    - target: {fileID: 263740523823740182, guid: bec982c4520c0614ca646c0366c3fcce,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadNextScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 263740523823740182, guid: bec982c4520c0614ca646c0366c3fcce,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 263740523823740182, guid: bec982c4520c0614ca646c0366c3fcce,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Level2
-      objectReference: {fileID: 0}
     - target: {fileID: 263740523833359199, guid: bec982c4520c0614ca646c0366c3fcce,
         type: 3}
       propertyPath: m_Name
@@ -64209,10 +64179,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1986957977}
-    - target: {fileID: 8964011289475539102, guid: 4bbadf3c6540d92459404f978b66be66,
+    - target: {fileID: 8964011288517594606, guid: 4bbadf3c6540d92459404f978b66be66,
         type: 3}
-      propertyPath: weight
-      value: 1
+      propertyPath: rotateSpeed
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 8964011289576205921, guid: 4bbadf3c6540d92459404f978b66be66,
         type: 3}
