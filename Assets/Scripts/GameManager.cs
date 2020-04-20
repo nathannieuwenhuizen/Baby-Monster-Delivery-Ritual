@@ -23,8 +23,7 @@ public class GameManager : MonoBehaviour
     public int totalScore = 0;
 
     //time info
-    private float startTime = 0;
-    private float duration = 1;
+    private float duration = 0;
     
     //prefabs
     public GameObject babyPrefab;
@@ -51,35 +50,33 @@ public class GameManager : MonoBehaviour
     private GameObject babyCountParent;
 
     //backend
-    private SceneLoader sceneLoader;
-    public gameState state;
+    public gameState state = gameState.setup;
 
 
     public static GameManager instance;
     private void Awake()
     {
         instance = this;
+        aliveBabies = new List<Baby>();
+
     }
 
     void Start()
     {
-        startTime = Time.time;
 
-        sceneLoader = GetComponent<SceneLoader>();
-        aliveBabies = new List<Baby>();
 
-        //fade camera from black
-        StartCoroutine( fadeImage.FadeTo(1, 0, 0.5f));
+        ////fade camera from black
+        //StartCoroutine( fadeImage.FadeTo(1, 0, 0.5f));
 
         SpawnFirstBaby();
-        state = gameState.running;
+        state = gameState.running; 
     }
 
     public void SpawnFirstBaby()
     {
         Baby newBaby = PoolManager.instance.ReuseObject(babyPrefab,wokPan.transform.position + new Vector3(0,.5f,0), Quaternion.identity).GetComponent<Baby>();
         AliveBabies.Add(newBaby);
-        UpdateBabyCount();
+        UpdateBabyCount(); 
     }
 
     // Update is called once per frame
@@ -87,11 +84,13 @@ public class GameManager : MonoBehaviour
     {
         if (state != gameState.running) { return; }
 
+
+        duration += Time.deltaTime;
+
         if (aliveBabies.Count <= 0)
         {
             state = gameState.end;
             //scrollBg.scrollSpeed = 0;
-            duration = Time.time - startTime;
             timeScore = Mathf.RoundToInt(500 / (1 + (duration / 10)));
 
             if (amountOfBabiesCollected == 0 )
@@ -139,7 +138,7 @@ public class GameManager : MonoBehaviour
         AudioManager.instance?.PlaySound(AudioEffect.fail);
 
         yield return StartCoroutine(fadeImage.FadeTo(0, 1, 0.5f));
-        sceneLoader.ReloadScene();
+        GetComponent<SceneLoader>().ReloadScene();
     }
 
     public void EndScreen()
